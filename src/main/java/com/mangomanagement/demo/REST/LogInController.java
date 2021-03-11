@@ -2,7 +2,10 @@ package com.mangomanagement.demo.REST;
 
 import com.mangomanagement.demo.Entity.User;
 import com.mangomanagement.demo.Service.UserService;
+import com.mangomanagement.demo.blo.UserLogIn;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -14,16 +17,19 @@ public class LogInController {
         this.userService = userService;
     }
 
-    @GetMapping
-    public String logIn(@RequestBody User user) {
-        User u = userService.findByAccount(user.getUserAccount());
+    @PostMapping
+    public String logIn(@RequestBody UserLogIn logInString) {
+
+        String account = logInString.getAccount();
+        String password = logInString.getPassword();
+
+        User u = userService.findByAccount(account);
         if (u == null) {
             return "the account does not exist.";
-        } else if (u.getUserPassword() != user.getUserAccount()) {
+        } else if (!u.getUserPassword().equals(password)) {
             return "wrong password";
         } else {
             return "log in successfully.";
         }
-
     }
 }

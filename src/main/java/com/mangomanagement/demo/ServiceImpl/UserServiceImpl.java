@@ -5,12 +5,12 @@ import com.mangomanagement.demo.Service.UserService;
 import com.mangomanagement.demo.dao.UserRepository;
 import com.mangomanagement.demo.util.query.SearchCriteria;
 import com.mangomanagement.demo.util.query.SpecificationImpl;
-import org.hibernate.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;

@@ -1,11 +1,9 @@
 package com.mangomanagement.demo.Service;
 
 import com.mangomanagement.demo.Entity.User;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface UserService {
     public User findById(int Id);
 

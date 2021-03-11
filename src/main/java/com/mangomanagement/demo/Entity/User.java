@@ -3,7 +3,7 @@ package com.mangomanagement.demo.Entity;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Table(name = "User")
+@Table(name="User")
 @Entity
 public class User implements Serializable {
 

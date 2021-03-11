@@ -10,5 +10,6 @@ INSERT INTO User VALUES
     (1, 'Sam Kuo', 'account1', 'samkuo'),
     (2, 'Joan Wu', 'account2', 'jaonwu'),
     (3, 'Zongyao Li', 'account3', 'zongyaoli'),
-    (4, 'Yichen Hao', 'account4', 'yichenhao');
+    (4, 'Yichen Hao', 'account4', 'yichenhao'),
+    (5, 'hahaha', 'hahaha', 'hahaha');
 COMMIT;

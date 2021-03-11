@@ -4,7 +4,8 @@ Backend of Mango Household Management System
 Java JDK: 1.8
 Framework: Spring Boot
 
-------------(create local mysql server)------------
+------------(create local mysql server)-----------
+
 The database we use is localhost.
 Please proceed following step to initiate the database.
 

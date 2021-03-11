@@ -19,10 +19,10 @@ Please proceed following step to initiate the database.
 
 3. Open the sql management application and connect to local sql server.
 
-4. Create a new query, copy the content of MangoMDB_Scheme.sql, paste it into the query, and then execute.
+4. Create a new query, copy the content of MangoMDB_Scheme.sql, paste it into the query, and then execute. File MangoMDB_Scheme.sql is located in ~/src/main/resources/mySQL_query
 
 5. After step 4, there should be a database called "MangoMDB" in the localhost sql server.
 
-6. Create a new query, copy the content of MangoMDB_Data.sql, paste it into the query, and then execute.
+6. Create a new query, copy the content of MangoMDB_Data.sql, paste it into the query, and then execute. File MangoMDB_Data.sql is located in ~/src/main/resources/mySQL_query
 
 7. After step 6, there should be tables and data in the "MangoMDB" db.

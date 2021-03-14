@@ -2,8 +2,6 @@ package com.mangomanagement.demo.Service;
 
 import com.mangomanagement.demo.Entity.User;
 
-import java.util.List;
-
 public interface UserService {
     public User findById(int Id);
 

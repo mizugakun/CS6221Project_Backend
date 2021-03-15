@@ -1,13 +1,12 @@
 package com.mangomanagement.demo.Entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+
 
 @Entity
 @Table(name = "OrderDetail")
+@IdClass(OrderDetailId.class)
 public class OrderDetail implements Serializable {
 
     private static final long serialVersionUID = 1L;

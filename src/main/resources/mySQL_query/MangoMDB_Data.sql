@@ -7,10 +7,10 @@ USE MangoMDB;
 
 SET AUTOCOMMIT=0;
 INSERT INTO User VALUE
-    (1, 'Sam Kuo', 'account1', 'samkuo'),
-    (2, 'Joan Wu', 'account2', 'jaonwu'),
-    (3, 'Zongyao Li', 'account3', 'zongyaoli'),
-    (4, 'Yichen Hao', 'account4', 'yichenhao');
+    (1, 'account1', 'samkuo'),
+    (2, 'account2', 'jaonwu'),
+    (3, 'account3', 'zongyaoli'),
+    (4, 'account4', 'yichenhao');
 COMMIT;
 
 SET AUTOCOMMIT=0;

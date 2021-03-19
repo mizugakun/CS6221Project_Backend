@@ -19,10 +19,10 @@ public class Item implements Serializable {
     private String itemName;
 
     @Column(name = "ProducerId")
-    private int producerId;
+    private Integer producerId;
 
     @Column(name = "SellerId")
-    private int sellerId;
+    private Integer sellerId;
 
     @Column(name = "Amount", nullable = false)
     private String amount;
@@ -49,19 +49,19 @@ public class Item implements Serializable {
         return itemName;
     }
 
-    public void setProducerId(int producerId) {
+    public void setProducerId(Integer producerId) {
         this.producerId = producerId;
     }
 
-    public int getProducerId() {
+    public Integer getProducerId() {
         return producerId;
     }
 
-    public void setSellerId(int sellerId) {
+    public void setSellerId(Integer sellerId) {
         this.sellerId = sellerId;
     }
 
-    public int getSellerId() {
+    public Integer getSellerId() {
         return sellerId;
     }
 

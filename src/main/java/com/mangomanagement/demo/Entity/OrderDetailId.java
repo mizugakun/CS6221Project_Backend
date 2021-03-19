@@ -7,11 +7,6 @@ public class OrderDetailId implements Serializable {
     private Integer orderId;
     private Integer itemId;
 
-    public OrderDetailId(Integer orderId, Integer itemId) {
-        this.orderId = orderId;
-        this.itemId = itemId;
-    }
-
     @Override
     public int hashCode() {
         return Objects.hash(orderId, itemId);

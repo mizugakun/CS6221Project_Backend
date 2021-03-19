@@ -7,11 +7,6 @@ public class StorageDetailId implements Serializable {
     private Integer userId;
     private Integer itemId;
 
-    public StorageDetailId(Integer userId, Integer itemId) {
-        this.userId = userId;
-        this.itemId = itemId;
-    }
-
     @Override
     public int hashCode() {
         return Objects.hash(userId, itemId);

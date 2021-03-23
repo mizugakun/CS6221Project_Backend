@@ -2,13 +2,11 @@ package com.mangomanagement.demo.blo;
 
 public class UserSignUp {
 
-    String username;
-    String account;
+    String Useraccount;
     String password;
 
     public UserSignUp(String username,String account, String password){
-        this.username=username;
-        this.account=account;
+        this.Useraccount=account;
         this.password=password;
     }
 }

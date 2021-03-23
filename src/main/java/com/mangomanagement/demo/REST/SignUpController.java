@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/signup")
 public class SignUpController {
+
     private final UserService userService;
 
     public SignUpController(UserService userService) {
@@ -16,8 +17,8 @@ public class SignUpController {
     }
 
     @PostMapping
-    public void singUp(@RequestBody User user){
+    public String singUp(@RequestBody User user){
         userService.save(user);
+        return "You have successful SignUp!";
     }
-
 }

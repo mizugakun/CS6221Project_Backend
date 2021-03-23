@@ -7,5 +7,7 @@ import java.util.List;
 public interface StorageService {
     public void save(StorageDetail storageDetail);
 
-    public List<StorageDetail> findById(int userId);
+    public List<StorageDetail> findStorageList(int userId);
+
+    public StorageDetail findStorage(int userId, int itemId);
 }

@@ -6,4 +6,6 @@ public interface ItemService {
     public void save(Item item);
 
     public Item findById(int id);
+
+    public Item findByName(String itemName);
 }

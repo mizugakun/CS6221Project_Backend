@@ -6,9 +6,11 @@ import com.mangomanagement.demo.dao.StorageDetailRepository;
 import com.mangomanagement.demo.util.query.SearchCriteria;
 import com.mangomanagement.demo.util.query.SpecificationImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StorageServiceImpl implements StorageService {
@@ -25,10 +27,26 @@ public class StorageServiceImpl implements StorageService {
     }
 
     @Override
-    public List<StorageDetail> findById(int userId) {
+    public List<StorageDetail> findStorageList(int userId) {
         String id = "" + userId;
-        SpecificationImpl<StorageDetail> sp = new SpecificationImpl(new SearchCriteria("userId", "=", id));
+        SpecificationImpl<StorageDetail> sp = new SpecificationImpl<>(new SearchCriteria("userId", "=", id));
         List<StorageDetail> res = storageRepository.findAll(sp);
+
+        return res;
+    }
+
+    @Override
+    public StorageDetail findStorage(int userId, int itemId) {
+        Specification<StorageDetail> sp1 = new SpecificationImpl<>(new SearchCriteria("userId", "=", "" + userId));
+        List<StorageDetail> list = storageRepository.findAll(Specification.where(sp1));
+
+        StorageDetail res = null;
+        for (StorageDetail detail : list) {
+            if (detail.getItemId() == itemId) {
+                res = detail;
+                break;
+            }
+        }
 
         return res;
     }

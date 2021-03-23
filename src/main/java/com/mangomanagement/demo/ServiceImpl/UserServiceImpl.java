@@ -23,7 +23,11 @@ public class UserServiceImpl implements UserService {
     public User findByAccount(String account) {
         SpecificationImpl<User> sp = new SpecificationImpl(new SearchCriteria("userAccount", "=", account));
         Optional<User> res = userRepository.findOne(sp);
-        return res.orElse(null);
+        if (res.isPresent()) {
+            return res.get();
+        }
+
+        throw new RuntimeException("No such User Account: " + account);
     }
 
     @Override

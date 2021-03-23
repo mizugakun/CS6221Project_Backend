@@ -28,8 +28,12 @@ public class SpecificationImpl<T> implements Specification<T> {
     public Predicate toPredicate(Root<T> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
 
         if (criteria.getOperation().equalsIgnoreCase("=")) {
-            return criteriaBuilder.equal(
-                    root.<String>get(criteria.getKey()), criteria.getValue().toString());
+            if (root.get(criteria.getKey()).getJavaType() == String.class) {
+                return criteriaBuilder.like(
+                        root.<String>get(criteria.getKey()), "%" + criteria.getValue() + "%");
+            } else {
+                return criteriaBuilder.equal(root.get(criteria.getKey()), criteria.getValue());
+            }
         }
         return null;
     }

@@ -41,8 +41,10 @@ public class ItemController {
     }
 
     @PostMapping("addNewItem")
-    public void addItem(@RequestBody Item item) {
+    public String addItem(@RequestBody Item item) {
+        String res = "Add item " + item.getItemName() + " successfully.";
         itemService.save(item);
+        return res;
     }
 
     @PostMapping("addNewItemIntoStorage")

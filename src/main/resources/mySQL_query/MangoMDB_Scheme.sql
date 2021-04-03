@@ -10,6 +10,7 @@ CREATE TABLE User (
     UserId SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
     UserAccount VARCHAR(100) NOT NULL,
     UserPassword VARCHAR(45) NOT NULL,
+    PurchaseWeekDay TINYINT UNSIGNED DEFAULT 0 CHECK ( PurchaseWeekDay < 7 ),
     PRIMARY KEY (UserId),
     UNIQUE (UserAccount)
 )ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
@@ -21,7 +22,7 @@ CREATE TABLE Item (
     SellerId SMALLINT UNSIGNED,
     Amount INT UNSIGNED NOT NULL,
     Unit VARCHAR(50),
-    Price DECIMAL NOT NULL,
+    Price DECIMAL(20,2) NOT NULL,
     PRIMARY KEY (ItemId),
     UNIQUE (ItemName)
 )ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
@@ -50,6 +51,8 @@ CREATE TABLE StorageDetail (
      UserId SMALLINT UNSIGNED NOT NULL,
      ItemId SMALLINT UNSIGNED NOT NULL,
      Remaining INT NOT NULL,
+     PurchaseFrequency DECIMAL(20,6) DEFAULT (0.0),
+     PurchaseFrequency_User DECIMAL(20,6) DEFAULT (0.0),
      PRIMARY KEY  (UserId,ItemId),
      KEY idx_FK_UserId (UserId),
      KEY idx_FK_ItemId (ItemId),

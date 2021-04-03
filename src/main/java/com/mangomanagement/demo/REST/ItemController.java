@@ -32,10 +32,10 @@ public class ItemController {
 
         for (StorageDetail detail : list) {
             Item item = itemService.findById(detail.getItemId());
-            StorageInfo info = new StorageInfo(item.getItemId(), item.getItemName(), detail.getRemaining());
+            StorageInfo info = new StorageInfo(item.getItemId(), item.getItemName(), detail.getRemaining(),
+                    detail.getPurchaseFrequency(), detail.getPurchaseFrequency_User());
             res.add(info);
         }
-        System.out.println("haha");
 
         return res;
     }

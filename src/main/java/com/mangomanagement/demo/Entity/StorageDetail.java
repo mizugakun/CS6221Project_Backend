@@ -2,6 +2,7 @@ package com.mangomanagement.demo.Entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 
 @Entity
@@ -21,6 +22,12 @@ public class StorageDetail implements Serializable {
 
     @Column(name = "Remaining", nullable = false)
     private Integer remaining;
+
+    @Column(name = "PurchaseFrequency")
+    private BigDecimal purchaseFrequency;
+
+    @Column(name = "PurchaseFrequency_User")
+    private BigDecimal purchaseFrequency_User;
 
     public void setUserId(int userId) {
         this.userId = userId;
@@ -44,6 +51,22 @@ public class StorageDetail implements Serializable {
 
     public Integer getRemaining() {
         return remaining;
+    }
+
+    public BigDecimal getPurchaseFrequency() {
+        return purchaseFrequency;
+    }
+
+    public void setPurchaseFrequency(BigDecimal purchaseFrequency) {
+        this.purchaseFrequency = purchaseFrequency;
+    }
+
+    public BigDecimal getPurchaseFrequency_User() {
+        return purchaseFrequency_User;
+    }
+
+    public void setPurchaseFrequency_User(BigDecimal purchaseFrequency_User) {
+        this.purchaseFrequency_User = purchaseFrequency_User;
     }
 
     @Override

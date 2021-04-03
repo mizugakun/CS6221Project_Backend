@@ -20,6 +20,9 @@ public class User implements Serializable {
     @Column(name = "UserPassword", nullable = false)
     private String userPassword;
 
+    @Column(name = "PurchaseWeekDay")
+    private Integer purchaseWeekDay;
+
     public void setUserId(int userId) {
         this.userId = userId;
     }
@@ -42,6 +45,14 @@ public class User implements Serializable {
 
     public String getUserPassword() {
         return userPassword;
+    }
+
+    public Integer getPurchaseWeekDay() {
+        return purchaseWeekDay;
+    }
+
+    public void setPurchaseWeekDay(Integer purchaseWeekDay) {
+        this.purchaseWeekDay = purchaseWeekDay;
     }
 
     @Override

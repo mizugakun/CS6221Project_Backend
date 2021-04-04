@@ -27,6 +27,6 @@ public class UserController {
         User user = userService.findByAccount(userAccount);
         user.setPurchaseWeekDay(date);
         userService.save(user);
-        return "update purchase date to " + date;
+        return "update purchase date successfully";
     }
 }

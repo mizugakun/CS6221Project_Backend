@@ -39,6 +39,10 @@ public class ItemServiceImpl implements ItemService {
     public Item findByName(String itemName) {
         Specification<Item> sp = new SpecificationImpl(new SearchCriteria("itemName", "=", itemName));
         Optional<Item> op = itemRepository.findOne(sp);
-        return op.orElse(null);
+        if (op.isPresent()) {
+            return op.get();
+        }
+
+        throw new RuntimeException("No item name:" + itemName);
     }
 }

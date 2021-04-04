@@ -10,7 +10,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class StorageServiceImpl implements StorageService {
@@ -46,6 +45,10 @@ public class StorageServiceImpl implements StorageService {
                 res = detail;
                 break;
             }
+        }
+
+        if (res == null) {
+            throw new RuntimeException("User " + itemId + " don't has item. Item id = " + itemId);
         }
 
         return res;

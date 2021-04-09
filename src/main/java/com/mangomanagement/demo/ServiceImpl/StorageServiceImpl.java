@@ -48,7 +48,7 @@ public class StorageServiceImpl implements StorageService {
         }
 
         if (res == null) {
-            throw new RuntimeException("User " + itemId + " don't has item. Item id = " + itemId);
+            throw new RuntimeException("User " + userId + " don't has item. Item id = " + itemId);
         }
 
         return res;

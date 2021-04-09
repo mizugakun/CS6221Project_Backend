@@ -51,8 +51,13 @@ public class ItemController {
     public String addNewItem(@RequestParam("userAccount") String userAccount, @RequestParam("number") Integer number, @RequestBody Item item) {
 
         String log = "";
+        Item oldItem;
         // check whether there is a same item in the item table
-        Item oldItem = itemService.findByName(item.getItemName());
+        try {
+            oldItem = itemService.findByName(item.getItemName());
+        } catch (Exception ex) {
+            oldItem = null;
+        }
 
         if (oldItem != null) {
             log += ("add item " + "\n" +  item.toString() + "\n");
@@ -66,7 +71,12 @@ public class ItemController {
         }
 
         User user = userService.findByAccount(userAccount);
-        StorageDetail storageDetail = storageService.findStorage(user.getUserId(), oldItem.getItemId());
+        StorageDetail storageDetail;
+        try {
+            storageDetail = storageService.findStorage(user.getUserId(), oldItem.getItemId());
+        } catch (Exception ex) {
+            storageDetail = null;
+        }
 
         // check whether the item has been already in user's storage.
         if (storageDetail != null) {

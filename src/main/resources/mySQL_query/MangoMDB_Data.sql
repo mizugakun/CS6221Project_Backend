@@ -20,7 +20,7 @@ INSERT INTO Item VALUE
     (3, "Honey O's Toasted Whole Grain Oats Cereal", NULL, NULL, 425, "g", 2.29),
     (4, "Apple Bag Honey Crisp", NULL, NULL, 2, "lb", 2.99),
     (5, "Black Forest Uncured Ham", NULL, NULL, 227, "g", 3.69),
-    (6, "100% Whole Grain Fiber Bread", NULL, NULL, 680, "g", 2.99),
+    (6, "Whole Grain Fiber Bread", NULL, NULL, 680, "g", 2.99),
     (7, "Russet Potatos", NULL, NULL, 1.36, "kg", 2.99),
     (8, "Sauder's Eggs", NULL, NULL, 12, NULL, 1.69),
     (9, "Tomato Basil", NULL, NULL, 737, "g", 3.49),

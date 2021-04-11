@@ -2,6 +2,7 @@ package com.mangomanagement.demo.Entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -18,8 +19,8 @@ public class OrderHistory implements Serializable {
     @Column(name = "UserId", nullable = false)
     private int userId;
 
-    @Column(name = "OrderDate", nullable = false)
-    private Date orderDate;
+    @Column(name = "OrderDate")
+    private LocalDateTime orderDate;
 
     public void setOrderId(int orderId) {
         this.orderId = orderId;
@@ -37,11 +38,11 @@ public class OrderHistory implements Serializable {
         return userId;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(LocalDateTime orderDate) {
         this.orderDate = orderDate;
     }
 
-    public Date getOrderDate() {
+    public LocalDateTime getOrderDate() {
         return orderDate;
     }
 

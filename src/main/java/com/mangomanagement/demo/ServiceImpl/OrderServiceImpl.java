@@ -32,4 +32,9 @@ public class OrderServiceImpl implements OrderService {
 
         return res;
     }
+
+    @Override
+    public Integer lastId() {
+        return Integer.valueOf("" + orderRepository.count());
+    }
 }

@@ -8,4 +8,6 @@ public interface OrderService {
     public void save(OrderHistory order);
 
     public List<OrderHistory> findById(int userId);
+
+    public Integer lastId();
 }

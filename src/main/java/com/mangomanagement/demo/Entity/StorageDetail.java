@@ -24,10 +24,10 @@ public class StorageDetail implements Serializable {
     private Integer remaining;
 
     @Column(name = "PurchaseFrequency")
-    private BigDecimal purchaseFrequency;
+    private double purchaseFrequency;
 
     @Column(name = "PurchaseFrequency_User")
-    private BigDecimal purchaseFrequency_User;
+    private double purchaseFrequency_User;
 
     public void setUserId(int userId) {
         this.userId = userId;
@@ -53,19 +53,19 @@ public class StorageDetail implements Serializable {
         return remaining;
     }
 
-    public BigDecimal getPurchaseFrequency() {
+    public double getPurchaseFrequency() {
         return purchaseFrequency;
     }
 
-    public void setPurchaseFrequency(BigDecimal purchaseFrequency) {
+    public void setPurchaseFrequency(double purchaseFrequency) {
         this.purchaseFrequency = purchaseFrequency;
     }
 
-    public BigDecimal getPurchaseFrequency_User() {
+    public double getPurchaseFrequency_User() {
         return purchaseFrequency_User;
     }
 
-    public void setPurchaseFrequency_User(BigDecimal purchaseFrequency_User) {
+    public void setPurchaseFrequency_User(double purchaseFrequency_User) {
         this.purchaseFrequency_User = purchaseFrequency_User;
     }
 

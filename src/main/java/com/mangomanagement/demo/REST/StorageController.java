@@ -42,7 +42,7 @@ public class StorageController {
     @PostMapping("updateConsumption")
     public String updateConsumption(@RequestParam("userAccount") String userAccount,
                                     @RequestParam("itemName") String itemName,
-                                    @RequestParam("quantity") BigDecimal quantity)
+                                    @RequestParam("quantity") double quantity)
     {
         User user = userService.findByAccount(userAccount);
         Item item = itemService.findByName(itemName);
@@ -53,6 +53,7 @@ public class StorageController {
             return "you don't have this item in your storage.";
         }
         detail.setPurchaseFrequency_User(quantity);
+        detail.setPurchaseFrequency(0.0);
         storageService.save(detail);
         return "update successfully.";
     }

@@ -54,8 +54,8 @@ public class OrderController {
             storage.setUserId(user.getUserId());
             storage.setItemId(item.getItemId());
             storage.setRemaining(0);
-            storage.setPurchaseFrequency(new BigDecimal(0));
-            storage.setPurchaseFrequency_User(new BigDecimal(0));
+            storage.setPurchaseFrequency(0.0);
+            storage.setPurchaseFrequency_User(0.0);
         }
         storage.setRemaining(storage.getRemaining() + number);
         storageService.save(storage);

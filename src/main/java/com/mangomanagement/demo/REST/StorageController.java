@@ -53,7 +53,6 @@ public class StorageController {
             return "you don't have this item in your storage.";
         }
         detail.setPurchaseFrequency_User(quantity);
-        detail.setPurchaseFrequency(0.0);
         storageService.save(detail);
         return "update successfully.";
     }

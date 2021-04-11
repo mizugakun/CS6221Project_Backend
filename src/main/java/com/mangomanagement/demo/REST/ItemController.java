@@ -91,6 +91,8 @@ public class ItemController {
             storageDetail.setItemId(oldItem.getItemId());
             storageDetail.setRemaining(number);
             storageDetail.setUserId(user.getUserId());
+            storageDetail.setPurchaseFrequency(0.0);
+            storageDetail.setPurchaseFrequency_User(0.0);
         }
         storageService.save(storageDetail);
 

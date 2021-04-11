@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -25,12 +26,22 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderHistory> findById(int userId) {
+    public List<OrderHistory> findByUserId(int userId) {
         String id = "" + userId;
         SpecificationImpl<OrderHistory> sp = new SpecificationImpl(new SearchCriteria("userId", "=", id));
         List<OrderHistory> res = orderRepository.findAll(sp);
 
         return res;
+    }
+
+    @Override
+    public OrderHistory findByOrderId(int orderId) {
+        Optional<OrderHistory> op =  orderRepository.findById(orderId);
+        if (op.isPresent()) {
+            return op.get();
+        }
+
+        throw new RuntimeException("no such order id: " + orderId);
     }
 
     @Override

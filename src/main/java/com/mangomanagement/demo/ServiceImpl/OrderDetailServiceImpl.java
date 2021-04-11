@@ -28,9 +28,14 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     public List<OrderDetail> findById(int orderId) {
         String id = "" + orderId;
         SpecificationImpl<OrderDetail> sp = new SpecificationImpl(new SearchCriteria("orderId", "=", id));
-        System.out.println("haha");
         List<OrderDetail> list = orderDetailRepository.findAll(sp);
-        System.out.println("haha");
         return list;
     }
+
+    @Override
+
+    public List<OrderDetail> findByOrderAndItem(List<Integer> orderIds, int itemId) {
+        return orderDetailRepository.findByOrdersAndItem(orderIds, itemId);
+    }
+
 }

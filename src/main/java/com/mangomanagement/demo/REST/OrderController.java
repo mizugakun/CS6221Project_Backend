@@ -2,10 +2,8 @@ package com.mangomanagement.demo.REST;
 
 import com.mangomanagement.demo.Entity.*;
 import com.mangomanagement.demo.Service.*;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.mangomanagement.demo.blo.StorageInfo;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -66,10 +64,33 @@ public class OrderController {
         return "shop successfully.";
     }
 
+    @GetMapping("purchaseReminding")
+    public List<StorageInfo> remindUser(@RequestParam("userAccount") String userAccount) {
+        User user = userService.findByAccount(userAccount);
+        List<StorageDetail> details = storageService.findStorageList(user.getUserId());
+        List<StorageInfo> res = new ArrayList<>();
+
+        for (StorageDetail detail : details) {
+            double purchaseFrequency = detail.getPurchaseFrequency_User() == 0.0 ?
+                    detail.getPurchaseFrequency() : detail.getPurchaseFrequency_User();
+
+            // if purchasing frequency larger than remaining, then no need to buy
+            if (detail.getRemaining() >= purchaseFrequency) { continue;}
+
+            // otherwise alert user
+            res.add(new StorageInfo(detail.getItemId(),
+                                    itemService.findById(detail.getItemId()).getItemName(),
+                                    detail.getRemaining(),
+                                    purchaseFrequency));
+        }
+
+        return res;
+    }
+
     private void updatePurchaseFrequency(Integer userId, Integer itemId) {
         List<OrderHistory> orderHistories = orderService.findByUserId(userId);
         List<Integer> ids = new ArrayList<>();
-        for (OrderHistory h : orderService.findByUserId(userId)) {
+        for (OrderHistory h : orderHistories) {
             ids.add(h.getOrderId());
         }
         List<OrderDetail> details = orderDetailService.findByOrderAndItem(ids, itemId);
@@ -106,13 +127,6 @@ public class OrderController {
             frequency = (amount / days) * 7;
         }
         return frequency;
-    }
-
-    private void updateDate(LocalDateTime date, LocalDateTime beginning, LocalDateTime ending) {
-        if (beginning == null) {
-            beginning = date;
-        }
-        ending = date;
     }
 
     private long calculatePeriod(LocalDateTime beginning, LocalDateTime ending) {

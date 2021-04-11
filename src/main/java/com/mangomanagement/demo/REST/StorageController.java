@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
+
 @RestController
 @RequestMapping("/storage")
 public class StorageController {
@@ -33,6 +35,24 @@ public class StorageController {
         Item item = itemService.findByName(itemName);
         StorageDetail detail = storageService.findStorage(user.getUserId(), item.getItemId());
         detail.setRemaining(remaining);
+        storageService.save(detail);
+        return "update successfully.";
+    }
+
+    @PostMapping("updateConsumption")
+    public String updateConsumption(@RequestParam("userAccount") String userAccount,
+                                    @RequestParam("itemName") String itemName,
+                                    @RequestParam("quantity") BigDecimal quantity)
+    {
+        User user = userService.findByAccount(userAccount);
+        Item item = itemService.findByName(itemName);
+        StorageDetail detail;
+        try {
+            detail = storageService.findStorage(user.getUserId(), item.getItemId());
+        } catch (Exception ex) {
+            return "you don't have this item in your storage.";
+        }
+        detail.setPurchaseFrequency_User(quantity);
         storageService.save(detail);
         return "update successfully.";
     }

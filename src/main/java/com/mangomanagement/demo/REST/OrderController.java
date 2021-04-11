@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @RestController
@@ -53,6 +54,8 @@ public class OrderController {
             storage.setUserId(user.getUserId());
             storage.setItemId(item.getItemId());
             storage.setRemaining(0);
+            storage.setPurchaseFrequency(new BigDecimal(0));
+            storage.setPurchaseFrequency_User(new BigDecimal(0));
         }
         storage.setRemaining(storage.getRemaining() + number);
         storageService.save(storage);

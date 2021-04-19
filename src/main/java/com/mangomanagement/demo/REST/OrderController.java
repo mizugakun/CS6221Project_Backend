@@ -3,11 +3,14 @@ package com.mangomanagement.demo.REST;
 import com.mangomanagement.demo.Entity.*;
 import com.mangomanagement.demo.Service.*;
 import com.mangomanagement.demo.blo.StorageInfo;
+import com.mangomanagement.demo.util.ConsumptionPredictor;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @RestController
@@ -88,6 +91,25 @@ public class OrderController {
     }
 
     private void updatePurchaseFrequency(Integer userId, Integer itemId) {
+        // fetch purchasing histories and sort by dates
+        List<OrderHistory> orderHistories = orderService.findByUserId(userId);
+        Collections.sort(orderHistories, (a, b) -> {
+            return a.getOrderDate().isAfter(b.getOrderDate())? 0 : -1;
+        });
+        List<Integer> ids = new ArrayList<>();
+        for (OrderHistory h : orderHistories) {
+            ids.add(h.getOrderId());
+        }
+        List<OrderDetail> details = orderDetailService.findByOrderAndItem(ids, itemId);
+
+        ConsumptionPredictor predictor = new ConsumptionPredictor();
+        StorageDetail detail = storageService.findStorage(userId, itemId);
+        detail.setPurchaseFrequency(predictor.getAccurateCons_per_week(orderHistories, details));
+        storageService.save(detail);
+    }
+
+    @Deprecated
+    private void updatePurchaseFrequency2(Integer userId, Integer itemId) {
         List<OrderHistory> orderHistories = orderService.findByUserId(userId);
         List<Integer> ids = new ArrayList<>();
         for (OrderHistory h : orderHistories) {
@@ -121,6 +143,7 @@ public class OrderController {
         storageService.save(detail);
     }
 
+    @Deprecated
     private double getFrequency(double amount, long days) {
         double frequency = 0.0;
         if (days != 0) {
@@ -129,6 +152,7 @@ public class OrderController {
         return frequency;
     }
 
+    @Deprecated
     private long calculatePeriod(LocalDateTime beginning, LocalDateTime ending) {
         Duration d = Duration.between(beginning, ending);
         return d.toDays();

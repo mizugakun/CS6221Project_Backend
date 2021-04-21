@@ -33,9 +33,13 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     }
 
     @Override
-
     public List<OrderDetail> findByOrderAndItem(List<Integer> orderIds, int itemId) {
         return orderDetailRepository.findByOrdersAndItem(orderIds, itemId);
+    }
+
+    @Override
+    public List<OrderDetail> findByUserAndItem(int userId, int itemId) {
+        return orderDetailRepository.findByItemAndUser(userId, itemId);
     }
 
 }

@@ -10,4 +10,6 @@ public interface OrderDetailService {
     public List<OrderDetail> findById(int orderId);
 
     public List<OrderDetail> findByOrderAndItem(List<Integer> orderIds, int itemId);
+
+    public List<OrderDetail> findByUserAndItem(int userId, int itemId);
 }

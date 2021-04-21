@@ -92,15 +92,14 @@ public class OrderController {
 
     private void updatePurchaseFrequency(Integer userId, Integer itemId) {
         // fetch purchasing histories and sort by dates
-        List<OrderHistory> orderHistories = orderService.findByUserId(userId);
+        List<OrderHistory> orderHistories = new ArrayList<>();
+        List<OrderDetail> details = orderDetailService.findByUserAndItem(userId, itemId);
+        for (OrderDetail d : details) {
+            orderHistories.add(orderService.findByOrderId(d.getOrderId()));
+        }
         Collections.sort(orderHistories, (a, b) -> {
             return a.getOrderDate().isAfter(b.getOrderDate())? 0 : -1;
         });
-        List<Integer> ids = new ArrayList<>();
-        for (OrderHistory h : orderHistories) {
-            ids.add(h.getOrderId());
-        }
-        List<OrderDetail> details = orderDetailService.findByOrderAndItem(ids, itemId);
 
         ConsumptionPredictor predictor = new ConsumptionPredictor();
         StorageDetail detail = storageService.findStorage(userId, itemId);
